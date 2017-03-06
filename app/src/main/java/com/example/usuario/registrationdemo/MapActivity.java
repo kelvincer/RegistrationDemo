@@ -101,6 +101,7 @@ public class MapActivity extends AppCompatActivity implements
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
         GeofenceTrasitionService.sentInfo = -1;
     }
@@ -178,8 +179,8 @@ public class MapActivity extends AppCompatActivity implements
     private LocationRequest locationRequest;
     // Defined in mili seconds.
     // This number in extremely low, and should be used only for debug
-    private final int UPDATE_INTERVAL = /*3 * 60 **/ 5000; // 3 minutes
-    private final int FASTEST_INTERVAL = /*30 **/ 5000;  // 30 secs
+    private final int UPDATE_INTERVAL = /*3 * 60 **/ 10000; // 3 minutes
+    private final int FASTEST_INTERVAL = /*30 **/ 10000;  // 30 secs
 
     private void startLocationUpdates() {
         Log.i(TAG, "startLocationUpdates()");
