@@ -57,14 +57,6 @@ public class GeofenceTrasitionService extends IntentService {
         else if (sentInfo == geoFenceTransition)
             return;
 
-        /*if (sentInfo == -1) {
-            sentInfo = geoFenceTransition;
-        } else if (sentInfo == geoFenceTransition) {
-            return;
-        } else if (sentInfo != geoFenceTransition) {
-            sentInfo = geoFenceTransition;
-        }
-*/
         // Check if the transition type
         if (geoFenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER ||
                 geoFenceTransition == Geofence.GEOFENCE_TRANSITION_EXIT) {

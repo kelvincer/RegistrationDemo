@@ -62,7 +62,7 @@ public class MapActivity extends AppCompatActivity implements
     private SupportMapFragment mapFragment;
     private GoogleMap map;
     private Location lastLocation;
-    private GoogleApiClient googleApiClient;
+    private static GoogleApiClient googleApiClient;
     private final int REQ_PERMISSION = 10;
     private PendingIntent geoFencePendingIntent;
     private final int GEOFENCE_REQ_CODE = 0;
@@ -77,6 +77,13 @@ public class MapActivity extends AppCompatActivity implements
         // initialize GoogleMaps
         createGoogleApi();
         initGMaps();
+
+        /*if(googleApiClient != null && googleApiClient.isConnected())
+            Log.d(TAG, "google api client is connected");
+        else{
+            Log.d(TAG, "google api client is disconnected");
+            createGoogleApi();
+        }*/
     }
 
     @Override
@@ -88,7 +95,8 @@ public class MapActivity extends AppCompatActivity implements
     @Override
     protected void onStop() {
         super.onStop();
-        googleApiClient.disconnect();
+        Log.d(TAG, "google api client disconnect");
+        //googleApiClient.disconnect();
     }
 
     @Override
@@ -299,8 +307,8 @@ public class MapActivity extends AppCompatActivity implements
         List<Geofence> geofences = new ArrayList<>();
 
         Geofence geofence1 = new Geofence.Builder()
-                .setRequestId("Idigital")
-                .setCircularRegion(-12.0921, -77.0335, GEOFENCE_RADIUS)
+                .setRequestId("Paradero Javier P.")
+                .setCircularRegion(-12.091483, -77.026072, GEOFENCE_RADIUS)
                 .setExpirationDuration(Geofence.NEVER_EXPIRE)
                 .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER
                         | Geofence.GEOFENCE_TRANSITION_EXIT)
@@ -349,20 +357,29 @@ public class MapActivity extends AppCompatActivity implements
                         | Geofence.GEOFENCE_TRANSITION_EXIT)
                 .build();
 
+        Geofence geofence7 = new Geofence.Builder()
+                .setRequestId("Casa Ladislao")
+                .setCircularRegion(-12.1585201, -76.9500312, GEOFENCE_RADIUS)
+                .setExpirationDuration(Geofence.NEVER_EXPIRE)
+                .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER
+                        | Geofence.GEOFENCE_TRANSITION_EXIT)
+                .build();
+
         geofences.add(geofence1);
         geofences.add(geofence2);
         geofences.add(geofence3);
         geofences.add(geofence4);
         geofences.add(geofence5);
         geofences.add(geofence6);
+        geofences.add(geofence7);
 
         return geofences;
     }
 
     private void drawGeofencesArea() {
 
-        //IDigital
-        LatLng latLng = new LatLng(-12.0921, -77.0335);
+        //Paradero Javier P.
+        LatLng latLng = new LatLng(-12.091483, -77.026072);
         drawGeofence(latLng);
 
         //Presmart
@@ -383,6 +400,10 @@ public class MapActivity extends AppCompatActivity implements
 
         //Paradero
         latLng = new LatLng(-12.090281, -77.017376);
+        drawGeofence(latLng);
+
+        //Casa Ladislao
+        latLng = new LatLng(-12.1585201, -76.9500312);
         drawGeofence(latLng);
     }
 
