@@ -2,7 +2,6 @@ package com.example.usuario.registrationdemo;
 
 import android.Manifest;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -77,13 +76,6 @@ public class MapActivity extends AppCompatActivity implements
         // initialize GoogleMaps
         createGoogleApi();
         initGMaps();
-
-        /*if(googleApiClient != null && googleApiClient.isConnected())
-            Log.d(TAG, "google api client is connected");
-        else{
-            Log.d(TAG, "google api client is disconnected");
-            createGoogleApi();
-        }*/
     }
 
     @Override
@@ -360,7 +352,7 @@ public class MapActivity extends AppCompatActivity implements
 
         Geofence geofence7 = new Geofence.Builder()
                 .setRequestId("Casa Ladislao")
-                .setCircularRegion(-12.1585201, -76.9500312, GEOFENCE_RADIUS)
+                .setCircularRegion(-12.1579579,-76.9393269, GEOFENCE_RADIUS)
                 .setExpirationDuration(Geofence.NEVER_EXPIRE)
                 .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER
                         | Geofence.GEOFENCE_TRANSITION_EXIT)
@@ -377,7 +369,7 @@ public class MapActivity extends AppCompatActivity implements
         return geofences;
     }
 
-    private void drawGeofencesArea() {
+    private void drawCircularAreas() {
 
         //Paradero Javier P.
         LatLng latLng = new LatLng(-12.091483, -77.026072);
@@ -404,7 +396,7 @@ public class MapActivity extends AppCompatActivity implements
         drawGeofence(latLng);
 
         //Casa Ladislao
-        latLng = new LatLng(-12.1585201, -76.9500312);
+        latLng = new LatLng(-12.1579579,-76.9393269);
         drawGeofence(latLng);
     }
 
@@ -510,7 +502,7 @@ public class MapActivity extends AppCompatActivity implements
     private void startGeofence() {
         Log.i(TAG, "startGeofence()");
 
-        drawGeofencesArea();
+        drawCircularAreas();
         List<Geofence> geofences = createGeofences();
         GeofencingRequest geofenceRequest = createGeofenceRequest(geofences);
         addGeofences(geofenceRequest);

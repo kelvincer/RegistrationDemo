@@ -28,9 +28,8 @@ import java.util.List;
 
 public class GeofenceTrasitionService extends IntentService {
 
-
     private static final String TAG = GeofenceTrasitionService.class.getSimpleName();
-    public static int GEOFENCE_NOTIFICATION_ID;
+    public int GEOFENCE_NOTIFICATION_ID;
     public static int sentInfo = -1;
 
     public GeofenceTrasitionService() {
@@ -52,10 +51,10 @@ public class GeofenceTrasitionService extends IntentService {
         // Retrieve GeofenceTrasition
         int geoFenceTransition = geofencingEvent.getGeofenceTransition();
 
-        if (sentInfo == -1 || sentInfo != geoFenceTransition)
+        /*if (sentInfo == -1 || sentInfo != geoFenceTransition)
             sentInfo = geoFenceTransition;
         else if (sentInfo == geoFenceTransition)
-            return;
+            return;*/
 
         // Check if the transition type
         if (geoFenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER ||
@@ -93,10 +92,8 @@ public class GeofenceTrasitionService extends IntentService {
         Log.i(TAG, "sendNotification: " + msg);
 
         // Intent to start the main Activity
-
         Intent resultIntent = new Intent(this, MainActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
         // Creating and sending Notification
         NotificationManager notificatioMng = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificatioMng.notify(generateId(), createNotification(msg, contentIntent));
