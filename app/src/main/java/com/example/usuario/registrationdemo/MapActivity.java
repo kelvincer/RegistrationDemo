@@ -358,6 +358,23 @@ public class MapActivity extends AppCompatActivity implements
                         | Geofence.GEOFENCE_TRANSITION_EXIT)
                 .build();
 
+        Geofence geofence8 = new Geofence.Builder()
+                .setRequestId("Paradero La Molina")
+                .setCircularRegion(-12.071825, -76.956418, GEOFENCE_RADIUS)
+                .setExpirationDuration(Geofence.NEVER_EXPIRE)
+                .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER
+                        | Geofence.GEOFENCE_TRANSITION_EXIT)
+                .build();
+
+        Geofence geofence9 = new Geofence.Builder()
+                .setRequestId("Paradero Jockey")
+                .setCircularRegion(-12.084798, -76.978379, GEOFENCE_RADIUS)
+                .setExpirationDuration(Geofence.NEVER_EXPIRE)
+                .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER
+                        | Geofence.GEOFENCE_TRANSITION_EXIT)
+                .build();
+
+
         geofences.add(geofence1);
         geofences.add(geofence2);
         geofences.add(geofence3);
@@ -365,6 +382,8 @@ public class MapActivity extends AppCompatActivity implements
         geofences.add(geofence5);
         geofences.add(geofence6);
         geofences.add(geofence7);
+        geofences.add(geofence8);
+        geofences.add(geofence9);
 
         return geofences;
     }
@@ -397,6 +416,14 @@ public class MapActivity extends AppCompatActivity implements
 
         //Casa Ladislao
         latLng = new LatLng(-12.1579579,-76.9393269);
+        drawGeofence(latLng);
+
+        //Paradero Jockey
+        latLng = new LatLng(-12.084798, -76.978379);
+        drawGeofence(latLng);
+
+        //Paradero La Molina
+        latLng = new LatLng(-12.071825, -76.956418);
         drawGeofence(latLng);
     }
 
