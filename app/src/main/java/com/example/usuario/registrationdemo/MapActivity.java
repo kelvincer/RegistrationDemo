@@ -61,7 +61,7 @@ public class MapActivity extends AppCompatActivity implements
     private SupportMapFragment mapFragment;
     private GoogleMap map;
     private Location lastLocation;
-    private static GoogleApiClient googleApiClient;
+    private GoogleApiClient googleApiClient;
     private final int REQ_PERMISSION = 10;
     private PendingIntent geoFencePendingIntent;
     private final int GEOFENCE_REQ_CODE = 0;
@@ -437,15 +437,15 @@ public class MapActivity extends AppCompatActivity implements
 
     private PendingIntent createGeofencePendingIntent() {
         Log.d(TAG, "createGeofencePendingIntent");
-        if (geoFencePendingIntent != null)
+        /*if (geoFencePendingIntent != null)
             return geoFencePendingIntent;
 
         Intent intent = new Intent(this, GeofenceTrasitionService.class);
         geoFencePendingIntent =  PendingIntent.getService(
                 this, GEOFENCE_REQ_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        return geoFencePendingIntent;
-        /*if (null != geoFencePendingIntent) {
+        return geoFencePendingIntent;*/
+        if (null != geoFencePendingIntent) {
 
             // Return the existing intent
             return geoFencePendingIntent;
@@ -462,7 +462,7 @@ public class MapActivity extends AppCompatActivity implements
                     0,
                     intent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
-        }*/
+        }
     }
 
     // Add the created GeofenceRequest to the device's monitoring list

@@ -30,7 +30,7 @@
 
         <receiver
             android:name="com.example.usuario.registrationdemo.GeofenceReceiver"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.aol.android.geofence.ACTION_RECEIVE_GEOFENCE" />
             </intent-filter>
